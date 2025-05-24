@@ -22,3 +22,15 @@ export async function saveArticle(article: ArticleDet) {
 
   return response.ok ? "Articulo guardado" : "Error al guardar articulo";
 }
+
+export async function deleteArticle(article: ArticleDet) {
+  const url = `http://localhost:8000/article/delete/${article.title}`;
+  const response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  });
+
+  return response.ok ? "Articulo Eliminado" : "Error al Elminar el articulo";
+}

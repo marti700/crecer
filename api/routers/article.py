@@ -46,3 +46,21 @@ async def save_article(article: Article):
         ))
         conn.commit()
         return cur.fetchone()[0]
+
+
+@router.get('/articles')
+async def get_saved_article():
+    with conn.cursor() as cur:
+        query = "select * FROM article_details"
+        cur.execute(query)
+        articles = []
+        for row in cur.fetchall():
+            article = {}
+            id, title, url, summary, saved_date = row
+            article['title'] = title
+            article['summary'] = summary
+            article['url'] = url
+            articles.append(article)
+
+        print(articles)
+        return articles
