@@ -40,7 +40,7 @@ async def save_article(article: Article):
             """
         cur.execute(query, (
             article.title,
-            f"https://en.wikipedia.org/${article.title}",
+            f"https://en.wikipedia.org/{article.title}",
             article.summary,
             None
         ))

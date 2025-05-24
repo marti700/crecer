@@ -20,5 +20,5 @@ export type ArticleDet = {
     title: string
     summary: string,
     url: string
-    words: [number, string],
+    words: [number, string][],
 }
