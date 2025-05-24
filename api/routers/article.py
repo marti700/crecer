@@ -49,7 +49,11 @@ async def save_article(article: Article):
 
 
 @router.get('/articles')
-async def get_saved_article():
+async def get_saved_articles() -> list:
+    """
+        Returns a list of all the articles saved in the database
+
+    """
     with conn.cursor() as cur:
         query = "select * FROM article_details"
         cur.execute(query)
@@ -64,3 +68,22 @@ async def get_saved_article():
 
         print(articles)
         return articles
+
+
+@router.delete('/article/delete/{title}')
+async def delete_article(title: str):
+    """
+        Deletes the article with the given names from the database
+
+        Args:
+            title: the name of the wikipedia article stored in the database
+
+        Returns:
+            http 200 if the article was delted http 500 otherwise
+    """
+    with conn.cursor() as cur:
+        query = "DELETE FROM article_details WHERE title = %s;"
+        cur.execute(query, (title,))
+        conn.commit()
+
+
