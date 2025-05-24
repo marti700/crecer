@@ -28,7 +28,7 @@ export default async function Results({ params }: ResultProps) {
           <ul className="my-4 space-y-3">
             {articles.map((value, index) => (
               <li key={index}>
-                <Link href="#" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                <Link href={`/article/details/${value.title}`} className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                   <span className="flex-10 ms-3 whitespace-nowrap">{value.title}</span>
                 </Link>
               </li>

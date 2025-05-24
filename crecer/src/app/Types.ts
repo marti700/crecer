@@ -9,3 +9,16 @@ export type ResultProps = {
     title: string
   }
 }
+
+export type ArticleDetProps = {
+    params: {
+        title: string
+    }
+}
+
+export type ArticleDet = {
+    title: string
+    summary: string,
+    url: string
+    words: [number, string],
+}
