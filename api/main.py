@@ -1,10 +1,8 @@
 from fastapi import FastAPI
-from .routers import article_search
+from .routers import article_search, article
 
-app1 = FastAPI()
+app = FastAPI()
 
-app1.include_router(article_search.router)
+app.include_router(article_search.router)
+app.include_router(article.router)
 
-# app1.get("/")
-# async def root():
-#     return "This is a test"
