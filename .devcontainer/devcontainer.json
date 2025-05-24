@@ -1,0 +1,14 @@
+{
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.13.3"
+    },
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
+
+  "workspaceFolder": "/workspace",
+  "postStartCommand": "pip install 'fastapi[standard]' requests psycopg[binary]"
+}
+

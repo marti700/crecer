@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: crecer_db
+    restart: unless-stopped
+    # env_file: .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-saved_articles}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+
+  app:
+    image: "mcr.microsoft.com/devcontainers/base:ubuntu"
+    command: sleep infinity
+    volumes:
+      - ../:/workspace:cached
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER-postgres}:${POSTGRES_PASSWORD-password}@postgres:5432/${POSTGRES_DB-saved_articles}
+
+volumes:
+  postgres_data:
