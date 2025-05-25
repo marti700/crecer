@@ -12,7 +12,7 @@ export async function handleSubmit(formData: FormData) {
 }
 
 export async function saveArticle(article: ArticleDet) {
-  const response = await fetch("http://localhost:8000/articles/save", {
+  const response = await fetch("http://api:8000/articles/save", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +24,7 @@ export async function saveArticle(article: ArticleDet) {
 }
 
 export async function deleteArticle(article: ArticleDet) {
-  const url = `http://localhost:8000/article/delete/${article.title}`;
+  const url = `http://api:8000/article/delete/${article.title}`;
   const response = await fetch(url, {
     method: "DELETE",
     headers: {

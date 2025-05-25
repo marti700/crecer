@@ -2,16 +2,16 @@ import Link from "next/link"
 import {Article, ResultProps} from '@/app/Types'
 
 async function getArticles(title: string) {
-  const url = `http://localhost:8000/search/article/${title}`;
+  const url = `http://api:8000/search/article/${title}`;
   const response = await fetch(url);
   const data = await response.json();
   return data;
 }
 
 export default async function Results({ params }: ResultProps) {
-  // const p = await params
-  // const title =  p.title
-  const title = params.title
+  const p = await params
+  const title =  p.title
+  // const title = params.title
   const searchQuery = decodeURIComponent(title);
   console.log(searchQuery);
   const articles: Article[] = await getArticles(searchQuery);

@@ -2,7 +2,7 @@ import { ArticleDet } from "@/app/Types";
 import ArticleTableButtons from "@/app/components/ArticlesTableButtons";
 
 async function getSavedArticles() {
-  const url = `http://localhost:8000/articles`;
+  const url = `http://api:8000/articles`;
   const response = await fetch(url);
   const data = await response.json();
   return data;
