@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS article_details (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL UNIQUE,
+    url TEXT NOT NULL,
+    summary TEXT NOT NULL,
+    saved_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
