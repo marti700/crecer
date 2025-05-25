@@ -17,4 +17,5 @@ export type ArticleDet = {
   summary: string,
   url: string
   words: [number, string][],
+  sentiment: string
 }

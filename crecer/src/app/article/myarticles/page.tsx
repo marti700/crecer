@@ -1,6 +1,8 @@
 import { ArticleDet } from "@/app/Types";
 import ArticleTableButtons from "@/app/components/ArticlesTableButtons";
 
+export const dynamic = 'force-dynamic'
+
 async function getSavedArticles() {
   const url = `http://api:8000/articles`;
   const response = await fetch(url);

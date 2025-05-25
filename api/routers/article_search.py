@@ -2,6 +2,9 @@ from fastapi import APIRouter
 import requests
 import heapq
 
+from textblob import TextBlob
+
+
 router = APIRouter()
 
 
@@ -53,7 +56,27 @@ async def article_search(name: str) -> dict:
     resp = {}
     resp["title"] = name
     resp["summary"] = get_summary(name)
-    resp["words"] = max_five_recurrent_words(get_full_article(name))
+    full_article = get_full_article(name)
+    resp["words"] = max_five_recurrent_words(full_article)
+    run_sentiment_analysis_results = run_sentiment_analysis(full_article)
+    sentiment = ""
+    opinion = ""
+
+    # sentiments 0 holds values for polarity
+    if run_sentiment_analysis_results[0] > 0.2:
+        sentiment = "Positiva"
+    elif run_sentiment_analysis_results[0] < -0.2:
+        sentiment = "Negativa"
+    else:
+        sentiment = "Neutral"
+
+    # sentiment[1] holds values for subjectivity
+    if run_sentiment_analysis_results[1] > 0.5:
+        opinion = "Subjectiva"
+    else:
+        opinion = "Objectiva"
+
+    resp["sentiment"] = f"El articulo tiene un tono {sentiment} y la opinion del autor parece ser {opinion}"
     return resp
 
 
@@ -162,3 +185,7 @@ def max_five_recurrent_words(article: str) -> list:
     heapq.heapify(counts)
 
     return heapq.nlargest(5, counts)
+
+def run_sentiment_analysis(text: str) -> dict:
+    blob = TextBlob(text)
+    return blob.sentiment
