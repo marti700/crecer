@@ -1,4 +1,5 @@
-from fastapi import APIRouter
+# from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel
 import psycopg
 
@@ -31,19 +32,24 @@ async def save_article(article: Article) -> int:
             if an error occurs an http 500 error response is returned
 
     """
-    print(article)
     with conn.cursor() as cur:
         query = """
             INSERT INTO article_details (title, url, summary, saved_date)
             VALUES (%s, %s, %s, %s)
             RETURNING id;
             """
-        cur.execute(query, (
-            article.title,
-            f"https://en.wikipedia.org/{article.title}",
-            article.summary,
-            None
-        ))
+        try:
+            cur.execute(query, (
+                article.title,
+                f"https://en.wikipedia.org/{article.title}",
+                article.summary,
+                None
+            ))
+        except psycopg.Error as e:
+            conn.rollback()
+            raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail="An unexpected error occurred while saving the article.")
         conn.commit()
         return cur.fetchone()[0]
 
