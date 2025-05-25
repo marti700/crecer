@@ -19,7 +19,7 @@ conn = psycopg.connect(dbname="saved_articles",
 
 
 @router.post('/articles/save', status_code=201)
-async def save_article(article: Article):
+async def save_article(article: Article) -> int:
     """
         Saves an Article into the database
 

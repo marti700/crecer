@@ -11,11 +11,8 @@ async function getArticles(title: string) {
 export default async function Results({ params }: ResultProps) {
   const p = await params
   const title =  p.title
-  // const title = params.title
   const searchQuery = decodeURIComponent(title);
-  console.log(searchQuery);
   const articles: Article[] = await getArticles(searchQuery);
-  console.log(articles)
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">

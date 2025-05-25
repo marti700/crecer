@@ -52,7 +52,6 @@ async def article_search(name: str) -> dict:
              words: a list of tuples representing the top 5 most repeated words in the article
        """
 
-    print("################################################")
     resp = {}
     resp["title"] = name
     resp["summary"] = get_summary(name)
@@ -89,9 +88,6 @@ def get_summary(name: str) -> str:
         Returns
             a string representing the article introductory text
     """
-    print("##############################")
-    print(
-        f"https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles={name.replace(' ', '%20')}&utf8")
     response = requests.get(
         f"https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles={name.replace(' ', '%20')}&utf8")
     return get_article_text(response.json()["query"]["pages"])

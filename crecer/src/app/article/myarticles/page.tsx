@@ -1,4 +1,4 @@
-import { ArticleDet } from "@/app/Types";
+import { Article, ArticleDet } from "@/app/Types";
 import ArticleTableButtons from "@/app/components/ArticlesTableButtons";
 
 export const dynamic = 'force-dynamic'
@@ -13,8 +13,6 @@ async function getSavedArticles() {
 
 export default async function MyArticles() {
   const articles: ArticleDet[] = await getSavedArticles();
-
-  console.log(articles);
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
