@@ -2,7 +2,19 @@
 
 Deben tener docker instalado si no lo tienen lo pueden descargar [aqui](https://www.docker.com/products/docker-desktop/)
 
-Una vez docker esté instalado deben puden correr el comando:
+Una vez docker esté instalado clona el repositorio
+
+```
+git clone https://github.com/marti700/crecer.git
+
+```
+luego acceder al directorio crecer
+
+```
+cd crecer
+```
+
+y dentro del directorio deben puden correr el comando:
 
 ```
 docker compose up --build
