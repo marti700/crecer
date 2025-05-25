@@ -9,7 +9,7 @@ docker compose up --build
 ```
 y la aplicación comenzará a ejecutarse luego de unos minutos.
 
-Puedes acceder a la aplicación usando este link [http://localhost:3001]
+Puedes acceder a la aplicación usando este link [http://localhost:3001](http://localhost:3001)
 
 # Arquitectura
 
