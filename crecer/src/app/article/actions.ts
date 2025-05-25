@@ -17,7 +17,7 @@ export async function saveArticle(article: ArticleDet) {
     body: JSON.stringify(article),
   });
 
-  return response.ok ? "Articulo guardado" : "Error al guardar articulo";
+  return response.ok ? "Articulo guardado" : "Error al guardar articulo, Sera que ya lo haz guardado antes?";
 }
 
 export async function deleteArticle(article: ArticleDet) {

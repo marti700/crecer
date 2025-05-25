@@ -1,4 +1,4 @@
-import { Article, ArticleDet } from "@/app/Types";
+import { ArticleDet } from "@/app/Types";
 import ArticleTableButtons from "@/app/components/ArticlesTableButtons";
 
 export const dynamic = 'force-dynamic'
